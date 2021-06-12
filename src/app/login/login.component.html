@@ -1,0 +1,56 @@
+
+
+<main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Login</h2>
+          <p>Please Login To Add And See Online Videos.<br/>
+          This is where teams can organize, share, and find the videos 
+          that for learning.</p>
+        </div>
+
+        
+        <div class="col-lg-6 mt-5 mt-lg-0 dvcntr">
+
+                <form [formGroup]="registerForm">
+                      
+                      
+                          <div class="col-md-10 form-group ">
+                               <input type="text" formControlName="email"  class="form-control" [class.is-invalid]="registerForm.get('email').invalid && registerForm.get('email').touched" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
+                            
+                                <p *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+                                    <small *ngIf="registerForm.get('email').errors?.required" class="text-danger">Email is Required</small>
+                                    <small *ngIf="registerForm.get('email').errors?.pattern" class="text-danger">Invalid Email</small> 
+                                </p>
+                          </div>
+
+                   
+                     
+                          <div class="col-md-10 form-group ">
+                              <input type="password" formControlName="pass"    class="form-control" [class.is-invalid]="registerForm.get('pass').invalid && registerForm.get('pass').touched" placeholder="Password">
+                           
+                                <p *ngIf="registerForm.get('pass').invalid && registerForm.get('pass').touched">
+                                    <small *ngIf="registerForm.get('pass').errors?.required" class="text-danger">Password is Required</small>
+                                     
+                                </p>
+                          </div>
+                          
+                  
+                        <div class="col-md-10 form-group alglft">
+                            <button class="btn btn-success" type="button" [disabled]="registerForm.invalid" (click)="onSubmit()">Login</button>
+                          </div>
+                      
+                      
+                </form>
+
+        </div>
+        
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->

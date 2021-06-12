@@ -1,0 +1,86 @@
+
+
+<main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Register</h2>
+          <p>Please Register To Add And See Online Videos.<br/>
+          This is where teams can organize, share, and find the videos 
+          that for learning.</p>
+        </div>
+
+        
+        <div class="col-lg-8 mt-5 mt-lg-0 dvcntr">
+
+                <form [formGroup]="registerForm">
+                      <div class="form-row">
+                      
+                          <div class="col-md-6 form-group">
+                            <input type="text" formControlName="name"  class="form-control" [class.is-invalid]="registerForm.get('name').invalid && registerForm.get('name').touched" placeholder="Name">
+                                
+                            <p *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">
+                              <small *ngIf="registerForm.get('name').errors?.required" class="text-danger">Name is Required</small>
+                              <small *ngIf="registerForm.get('name').errors?.minlength" class="text-danger">Name atleast  contains  3 Chars.</small> 
+                            </p>
+                          </div>
+
+                          <div class="col-md-6 form-group ">
+                               <input type="text" formControlName="email"  class="form-control" [class.is-invalid]="registerForm.get('email').invalid && registerForm.get('email').touched" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
+                            
+                                <p *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+                                    <small *ngIf="registerForm.get('email').errors?.required" class="text-danger">Email is Required</small>
+                                    <small *ngIf="registerForm.get('email').errors?.pattern" class="text-danger">Invalid Email</small> 
+                                </p>
+                          </div>
+
+                      </div>
+                      
+                      <div class="form-row">
+                          <div class="col-md-6 form-group ">
+                              <input type="password" formControlName="pass"    class="form-control" [class.is-invalid]="registerForm.get('pass').invalid && registerForm.get('pass').touched" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$" placeholder="Password">
+                           
+                                <p *ngIf="registerForm.get('pass').invalid && registerForm.get('pass').touched">
+                                    <small *ngIf="registerForm.get('pass').errors?.required" class="text-danger">Password is Required</small>
+                                    <small *ngIf="registerForm.get('pass').errors?.pattern" class="text-danger">
+                                    
+                                    
+                                        Password must Contains Atleast:
+                                        <ul>
+                                        <li>One UpperCase</li>
+                                        <li>One LowerCase</li>
+                                        <li>One Digit</li>
+                                        <li>One Special Chars.</li>
+                                        <li>Min 8 to Max 15 Chars Long.</li>
+                                        </ul>
+                                    
+                                    
+                                    </small>  
+                                </p>
+                          </div>
+                          
+                          <div class="col-md-6 form-group alglft">
+                            <button class="btn btn-success" type="button" [disabled]="registerForm.invalid" (click)="onSubmit()">Register</button>
+                          </div>
+                      </div>
+
+
+
+                      
+                </form>
+
+        </div>
+        
+
+          
+
+
+        
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
