@@ -18,6 +18,7 @@ export class MyvideosComponent implements OnInit {
   videoIdPk:any='';
   editRecord:any='';
   buttonValue:any='Add Video';
+  countRecord=0;
   constructor(private fb: FormBuilder,private videoObj:VideosService,private toastr: ToastrService) { }
 
   public addVideoForm = this.fb.group({
@@ -39,6 +40,11 @@ export class MyvideosComponent implements OnInit {
     this.videoObj.getMyVideosListService().subscribe(response => {
       this.record = response;
       if(this.record.status==200){
+        if(this.record.data.length==0){
+          this.countRecord=0;
+        }else{
+          this.countRecord=1;
+        }
         console.log(this.record);
       }
     },(e) => {
@@ -90,6 +96,26 @@ export class MyvideosComponent implements OnInit {
         this.videoIdPk=this.editRecord.data[0]._id;
       }
     },(e) => { 
+      console.log(e);
+      this.toastr.error(e.error.message);
+    });
+  }
+  deleteVideo(){
+    this.videoObj.deleteMyVideoService(this.videoIdPk).subscribe(response => {
+      this.addVideoForm.reset();
+        this.addData = response;
+        if(this.addData.status==200){
+          this.toastr.success('Video Deleted successfully', 'Success');
+        }
+        this.getMyVideosListService();
+        let elem = document.getElementById('addVideoLink');
+        let evt = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+        });
+        elem.dispatchEvent(evt); 
+    },(e) => {
       console.log(e);
       this.toastr.error(e.error.message);
     });

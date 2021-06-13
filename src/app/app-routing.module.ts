@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { MyvideosComponent } from './myvideos/myvideos.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'register',   component:RegisterComponent },
   { path: 'login',   component:LoginComponent },
   { path: 'myvideos',   component:MyvideosComponent },
+  { path: 'logout',   component:LogoutComponent } 
   //{ path: '**', component: PageNotFoundComponent } ,// Wildcard route for a 404 page
 ];
 

@@ -6,4 +6,15 @@
       <a  routerLink="/register" class="btn-about">Register</a>
     </div>
 </section>
+<div class="col-sm-12 border-right" >
+                              <h4 class="tophmpadd"> All  Videos </h4>
+                                
+                                <div *ngIf="countRecord==0">No Record Found. Please upload a new video youtube link.</div>
+                                <div *ngFor="let item of record.data" class="eachDiv">
+                                      <p ><b>Title: </b> <span class="hmvdaddttl"> {{item.title}} </span></p>
+                                      <p> <b>Added By: </b> <span class="hmvdaddnm"> {{item.userDetails[0].name}}</span></p>
+                                      <p><b>Description: </b> {{item.description}}</p>
+                                      <p><b>Video Link: </b> <a href="{{item.url}}" target="_blank" class="hmvdaddlnk">{{item.url}}</a></p>
+                                </div>
+</div>
 

@@ -5,7 +5,7 @@
 
                 <div class="section-title">
                 <h2>My Videos</h2>
-                <h4><a href="javascript:void(0)"  (click)="resetForm()">Add Video</a></h4>
+                <h4><a href="javascript:void(0)"  (click)="resetForm()" id="addVideoLink">Add Video</a></h4>
                 <p>Please Add And See Online Videos. <br/>
                 This is where teams can organize, share, and find the videos 
                 that for learning. Here you can see only your uploaded videos.</p> 
@@ -22,7 +22,8 @@
                                             <th>Url</th>
                                         </tr>  
                                     </thead>  
-                                    <tbody>  
+                                    <tbody>
+                                    <tr *ngIf="countRecord==0"><td colspan="3">No Record Found. Please upload a new video youtube link.</td></tr>  
                                         <tr *ngFor="let item of record.data">  
                                             <td>
                                             <input type="radio" #changeDataRef name="changeData" value="{{item._id}}" (change)="getSingleVideo(changeDataRef.value);" />&nbsp;
@@ -35,11 +36,11 @@
                         </div>
                         <div class="col-sm-4" >
                                 <form [formGroup]="addVideoForm">
-                                        <input type="hidden" name="videoIdPk" [(ngModel)]="videoIdPk" [value]="videoIdPk"/>
+                                        <input type="hidden" name="videoIdPk" [(ngModel)]="videoIdPk" [value]="videoIdPk"  [ngModelOptions]="{standalone: true}"/> 
                                         
                                        <h4> {{buttonValue}}</h4>
-                                        <input type="text" name="title" #titleRef formControlName="title"  class="form-control" [class.is-invalid]="addVideoForm.get('title').invalid && addVideoForm.get('title').touched" placeholder="Title" 
-                                        [(ngModel)]="title" >
+                                        <input type="text"  #titleRef formControlName="title"  class="form-control" [class.is-invalid]="addVideoForm.get('title').invalid && addVideoForm.get('title').touched" placeholder="Title" 
+                                        [(ngModel)]="title"  >
                                             
                                         <p *ngIf="addVideoForm.get('title').invalid && addVideoForm.get('title').touched">
                                         <small *ngIf="addVideoForm.get('title').errors?.required" class="text-danger">Title is Required</small>
@@ -48,7 +49,7 @@
                                    
 
                                     
-                                        <textarea rows="8" formControlName="description" name="description" #descriptionRef class="form-control" [class.is-invalid]="addVideoForm.get('description').invalid && addVideoForm.get('description').touched" placeholder="Description" [(ngModel)]="description">
+                                        <textarea rows="8" formControlName="description"  #descriptionRef class="form-control" [class.is-invalid]="addVideoForm.get('description').invalid && addVideoForm.get('description').touched" placeholder="Description" [(ngModel)]="description">
                                         </textarea>
                                             
                                         <p *ngIf="addVideoForm.get('description').invalid && addVideoForm.get('description').touched">
@@ -56,7 +57,7 @@
                                        
                                         </p><br/>
                                     
-                                         <input type="text" formControlName="url" name="url" #urlRef class="form-control" [class.is-invalid]="addVideoForm.get('url').invalid && addVideoForm.get('url').touched" placeholder="Url" [(ngModel)]="url">
+                                         <input type="text" formControlName="url"  #urlRef class="form-control" [class.is-invalid]="addVideoForm.get('url').invalid && addVideoForm.get('url').touched" placeholder="Url" [(ngModel)]="url">
                                             
                                         <p *ngIf="addVideoForm.get('url').invalid && addVideoForm.get('url').touched">
                                         <small *ngIf="addVideoForm.get('url').errors?.required" class="text-danger">Url is Required</small>
@@ -64,9 +65,9 @@
                                         </p><br/>
                                 
                                         
-                                        <button class="btn btn-success" type="button" [disabled]="addVideoForm.invalid" (click)="addUpdateVideo(titleRef.value,descriptionRef.value,urlRef.value)">{{buttonValue}}</button>
+                                        <button class="btn btn-success" type="button" [disabled]="addVideoForm.invalid" (click)="addUpdateVideo(titleRef.value,descriptionRef.value,urlRef.value)">{{buttonValue}}</button> &nbsp;
                                         
-                                    
+                                        <button *ngIf="buttonValue=='Update Video'" class="btn btn-danger" type="button" (click)="deleteVideo()">Delete Video</button>
                                     
                                 </form>
                         </div>

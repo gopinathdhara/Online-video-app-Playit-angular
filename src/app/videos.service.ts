@@ -8,11 +8,12 @@ import { catchError } from 'rxjs/operators'
 })
 export class VideosService {
   
-  private accesstoken=localStorage.getItem("accesstoken");
+  public accesstoken=localStorage.getItem("accesstoken");
 
-  private url = 'http://localhost:3000/api/videos?token='+this.accesstoken;
-  private url1 = 'http://localhost:3000/api/video?token='+this.accesstoken;
-  private url2 = 'http://localhost:3000/api/video';
+  public url = 'http://localhost:3000/api/videos?token='+this.accesstoken;
+  public url1 = 'http://localhost:3000/api/video?token='+this.accesstoken;
+  public url2 = 'http://localhost:3000/api/video';
+  public url3= 'http://localhost:3000/api/allvideos';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -47,4 +48,18 @@ export class VideosService {
       catchError(this.handleError)
       );;
   }
+  deleteMyVideoService(videoId:string):Observable<any>{
+    let newUrl3=this.url2+"/"+videoId+"?token="+this.accesstoken;
+    let formdata={
+      
+    };
+    return this.httpClient.delete<any>(newUrl3,formdata).pipe(
+      catchError(this.handleError)
+      );;
+  }
+  getAllVideosListService():Observable<any>{
+    return this.httpClient.get<any>(this.url3).pipe(
+      catchError(this.handleError)
+      );
+  } 
 }

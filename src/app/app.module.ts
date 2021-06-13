@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { MyvideosComponent } from './myvideos/myvideos.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MyvideosComponent } from './myvideos/myvideos.component';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
-    MyvideosComponent
+    MyvideosComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'onlinevideoapp';
+  loginstatus:number=0;
+  ngOnInit(): void {
+    if(localStorage.getItem("accesstoken")==null)
+     {
+        this.loginstatus=0;
+     }
+     else
+     {
+        this.loginstatus=1;
+     }
+  }
+  
 }

@@ -41,24 +41,11 @@
                       
                       <div class="form-row">
                           <div class="col-md-6 form-group ">
-                              <input type="password" formControlName="pass"    class="form-control" [class.is-invalid]="registerForm.get('pass').invalid && registerForm.get('pass').touched" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$" placeholder="Password">
+                              <input type="password" formControlName="pass"    class="form-control" [class.is-invalid]="registerForm.get('pass').invalid && registerForm.get('pass').touched"  placeholder="Password">
                            
                                 <p *ngIf="registerForm.get('pass').invalid && registerForm.get('pass').touched">
                                     <small *ngIf="registerForm.get('pass').errors?.required" class="text-danger">Password is Required</small>
-                                    <small *ngIf="registerForm.get('pass').errors?.pattern" class="text-danger">
                                     
-                                    
-                                        Password must Contains Atleast:
-                                        <ul>
-                                        <li>One UpperCase</li>
-                                        <li>One LowerCase</li>
-                                        <li>One Digit</li>
-                                        <li>One Special Chars.</li>
-                                        <li>Min 8 to Max 15 Chars Long.</li>
-                                        </ul>
-                                    
-                                    
-                                    </small>  
                                 </p>
                           </div>
                           

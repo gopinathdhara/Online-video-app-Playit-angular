@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
       this.data = response;
       console.log(this.data);
       this.toastr.success('Registered successfully', 'Success');
+      this.registerForm.reset();
     });
     console.log(this.registerForm.value);
   }
