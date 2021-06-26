@@ -10,11 +10,44 @@
                               <h4 class="tophmpadd"> All  Videos </h4>
                                 
                                 <div *ngIf="countRecord==0">No Record Found. Please upload a new video youtube link.</div>
+
                                 <div *ngFor="let item of record.data" class="eachDiv">
-                                      <p ><b>Title: </b> <span class="hmvdaddttl"> {{item.title}} </span></p>
-                                      <p> <b>Added By: </b> <span class="hmvdaddnm"> {{item.userDetails[0].name}}</span></p>
-                                      <p><b>Description: </b> {{item.description}}</p>
-                                      <p><b>Video Link: </b> <a href="{{item.url}}" target="_blank" class="hmvdaddlnk">{{item.url}}</a></p>
+                                      
+                                      <div class="video-container">
+                                          <iframe width="560" height="315" [src]="item.url|safe"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                      </div>
+
+                                      <div class="dtlnk">
+                                          <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" (click)="showModal(item.title,item.description,item.userDetails[0].name)">
+                                                View Details
+                                          </button>
+                                      </div>
                                 </div>
 </div>
 
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title modttl">Video Details</h4>
+        <button type="button" class="close" (click)="hideModal()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <p><b>Title</b> : {{ title }}</p>
+         <p><b>Description</b> : {{ desc }}</p>
+         <p><b>Added By</b> : {{ addedBy| titlecase }}</p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="hideModal()">Close</button>
+        <!-- this button is hidden, used to close from typescript -->
+        <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

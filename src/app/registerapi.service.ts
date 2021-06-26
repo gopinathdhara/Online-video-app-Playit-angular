@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CommonData } from './comon/comondata';
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterapiService {
-  private url = 'http://localhost:3000/api/users/signup';
+  private url = CommonData.baseUrl+'api/users/signup';
 
   constructor(private httpClient: HttpClient) { }
 

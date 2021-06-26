@@ -13,6 +13,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { MyvideosComponent } from './myvideos/myvideos.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SafePipe } from './safe.pipe';
+import { EmbedvideourlPipe } from './embedvideourl.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LogoutComponent } from './logout/logout.component';
     HomeComponent,
     LoginComponent,
     MyvideosComponent,
-    LogoutComponent
+    LogoutComponent,
+    SafePipe,
+    EmbedvideourlPipe
   ],
   imports: [
     BrowserModule,

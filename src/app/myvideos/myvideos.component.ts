@@ -19,6 +19,7 @@ export class MyvideosComponent implements OnInit {
   editRecord:any='';
   buttonValue:any='Add Video';
   countRecord=0;
+  username='';
   constructor(private fb: FormBuilder,private videoObj:VideosService,private toastr: ToastrService) { }
 
   public addVideoForm = this.fb.group({
@@ -28,7 +29,7 @@ export class MyvideosComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
+    this.username=localStorage.getItem("username");
     this.getMyVideosListService();
     // this.addVideoForm.patchValue({
     //   title : "gopi",

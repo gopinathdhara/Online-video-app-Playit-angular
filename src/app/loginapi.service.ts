@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators'
+import { CommonData } from './comon/comondata';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginapiService {
 
-  private url = 'http://localhost:3000/api/users/signin';
+  private url = CommonData.baseUrl+'api/users/signin';
 
   constructor(private httpClient: HttpClient) { }
 

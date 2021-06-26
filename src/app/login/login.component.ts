@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         localStorage.removeItem("accesstoken");
         //console.log(localStorage.getItem("accesstoken"));
         localStorage.setItem("accesstoken",this.accesstoken);
+        localStorage.setItem("username",this.data.user[0].name);
         //console.log(localStorage.getItem("accesstoken"));
         this.toastr.success('Login successfully', 'Success');
         //set login status on

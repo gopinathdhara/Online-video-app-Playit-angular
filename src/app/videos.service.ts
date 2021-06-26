@@ -2,22 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators'
+import { CommonData } from './comon/comondata';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideosService {
   
-  public accesstoken=localStorage.getItem("accesstoken");
-
-  public url = 'http://localhost:3000/api/videos?token='+this.accesstoken;
-  public url1 = 'http://localhost:3000/api/video?token='+this.accesstoken;
-  public url2 = 'http://localhost:3000/api/video';
-  public url3= 'http://localhost:3000/api/allvideos';
+  public accesstoken="";
+  public url = "";
+  public url1 = "";
+  public url2 = CommonData.baseUrl+'api/video';
+  public url3= CommonData.baseUrl+'api/allvideos';
 
   constructor(private httpClient: HttpClient) { }
-
+  
   getMyVideosListService():Observable<any>{
+
+    this.accesstoken=localStorage.getItem("accesstoken"); 
+    this.url=CommonData.baseUrl+'api/videos?token='+this.accesstoken;
     return this.httpClient.get<any>(this.url).pipe(
       catchError(this.handleError)
       );
@@ -26,6 +29,9 @@ export class VideosService {
     return throwError(error);
   } 
   insertMyVideosListService(title:string,description:string,url:string):Observable<any>{
+
+    this.accesstoken=localStorage.getItem("accesstoken");
+    this.url1=CommonData.baseUrl+'api/video?token='+this.accesstoken;
     let formdata={
       'title':title,'description':description,'url':url
     };
@@ -34,12 +40,16 @@ export class VideosService {
       );;
   }
   getSingleVideoListService(videoId):Observable<any>{
+
+    this.accesstoken=localStorage.getItem("accesstoken");
     let newUrl2=this.url2+"/"+videoId+"?token="+this.accesstoken;
     return this.httpClient.get<any>(newUrl2).pipe(
       catchError(this.handleError)
       );
   } 
   updateMyVideosListService(title:string,description:string,url:string,videoId:string):Observable<any>{
+    
+    this.accesstoken=localStorage.getItem("accesstoken");
     let newUrl3=this.url2+"/"+videoId+"?token="+this.accesstoken;
     let formdata={
       'title':title,'description':description,'url':url
@@ -49,6 +59,7 @@ export class VideosService {
       );;
   }
   deleteMyVideoService(videoId:string):Observable<any>{
+    this.accesstoken=localStorage.getItem("accesstoken");
     let newUrl3=this.url2+"/"+videoId+"?token="+this.accesstoken;
     let formdata={
       
